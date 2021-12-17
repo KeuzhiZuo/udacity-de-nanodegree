@@ -16,7 +16,7 @@ deadline 12/31/2021
 deadline 1/21/2022
 
 ## Project 5 - Data Pipelines 
-dealine 2/11/2022
+deadline 2/11/2022
 
 ## Project 6 - Capstone
 deadline 3/1/2022
