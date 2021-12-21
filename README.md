@@ -9,7 +9,7 @@ This project offers a solution to the above issue with a database schema and ETL
 ## Project 2 - Data Modeling with Apache Cassandra
 A startup called Sparkify wants to analyze the data they've been collecting on songs and user activity on their new music streaming app. The analysis team is particularly interested in understanding what songs users are listening to. Currently, there is no easy way to query the data to generate the results, since the data reside in a directory of CSV files on user activity on the app. <br> 
 This project offers a solution to create a Apache Cassandra database which can create queries on song data to answer questions.
-Please click [HERE](n/a) to view more details about this project.
+Please click [HERE](https://github.com/KeuzhiZuo/udacity-de-nanodegree-wip/tree/main/project%202) to view more details about this project.
 
 ## Project 3 - Data Warehouse
 deadline 12/31/2021
