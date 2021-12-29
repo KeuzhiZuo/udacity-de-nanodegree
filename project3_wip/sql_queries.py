@@ -5,52 +5,52 @@ config = configparser.ConfigParser()
 config.read('dwh.cfg')
 
 # DROP TABLES
-staging_events_table_drop = "DROP TABLE IF EXISTS events_staging"
-staging_songs_table_drop = "DROP TABLE IF EXISTS songs_staging"
+staging_events_table_drop = "DROP TABLE IF EXISTS staging_events"
+staging_songs_table_drop = "DROP TABLE IF EXISTS staging_songs"
 songplay_table_drop = "DROP TABLE IF EXISTS songplays"
 user_table_drop = "DROP TABLE IF EXISTS users"
 song_table_drop = "DROP TABLE IF EXISTS songs"
 artist_table_drop = "DROP TABLE IF EXISTS artists"
-time_table_drop = "DROP TABLE IF EXISTS times"
+time_table_drop = "DROP TABLE IF EXISTS time"
 
 # CREATE TABLES
 # staging tables 
 staging_events_table_create= ("""
     CREATE TABLE IF NOT EXISTS staging_events (
-       event_id    BIGINT IDENTITY(0,1) NOT NULL,
-       artist      VARCHAR              NULL,
-       auth        VARCHAR              NULL,
-       firstName   VARCHAR              NULL,
-       gender      VARCHAR              NULL,
-       itemInSession VARCHAR            NULL,
-       lastName    VARCHAR              NULL,
-       length      VARCHAR              NULL,
-       level       VARCHAR              NULL,
-       location    VARCHAR              NULL,
-       method      VARCHAR              NULL,
-       page        VARCHAR              NULL,
-       registration VARCHAR             NULL,
-       sessionId   INTEGER              NOT NULL SORTKEY DISTKEY,
-       song        VARCHAR              NULL,
-       status      INTEGER              NULL,
+       event_id    BIGINT IDENTITY(0,1),
+       artist      VARCHAR,
+       auth        VARCHAR,
+       firstName   VARCHAR,
+       gender      VARCHAR,
+       itemInSession VARCHAR,
+       lastName    VARCHAR,
+       length      VARCHAR,
+       level       VARCHAR,
+       location    VARCHAR,
+       method      VARCHAR,
+       page        VARCHAR,
+       registration VARCHAR,
+       sessionId   INTEGER,
+       song        VARCHAR,
+       status      INTEGER,
        ts          BIGINT               NOT NULL,
-       userAgent   VARCHAR              NULL,
-       userId      INTEGER              NULL
+       userAgent   VARCHAR,
+       userId      INTEGER
        );
 """)
 
 staging_songs_table_create = ("""
     CREATE TABLE IF NOT EXISTS staging_songs (
-        num_songs           INTEGER         NULL,
-        artist_id           VARCHAR         NOT NULL SORTKEY DISTKEY,
-        artist_latitude     VARCHAR         NULL,
-        artist_longitude    VARCHAR         NULL,
-        artist_location     VARCHAR         NULL,
-        artist_name         VARCHAR         NULL,
-        song_id             VARCHAR         NOT NULL,
-        title               VARCHAR         NULL,
-        duration            NUMERIC         NULL,
-        year                INTEGER         NULL
+        num_songs           INTEGER,
+        artist_id           VARCHAR,
+        artist_latitude     VARCHAR,
+        artist_longitude    VARCHAR,
+        artist_location     VARCHAR,
+        artist_name         VARCHAR,
+        song_id             VARCHAR,
+        title               VARCHAR,
+        duration            NUMERIC,
+        year                INTEGER
         );
 """)
 
@@ -59,7 +59,6 @@ songplay_table_create = ("""
     CREATE TABLE IF NOT EXISTS songplays (
         songplay_id INTEGER IDENTITY(0,1)   NOT NULL PRIMARY KEY,
         start_time  TIMESTAMP               NOT NULL,
-        user_id     INTEGER(30)             NOT NULL DISTKEY,
         level       VARCHAR(10)             NOT NULL,
         song_id     VARCHAR(30)             NOT NULL,
         artist_id   VARCHAR(30)             NOT NULL,
@@ -121,17 +120,18 @@ time_table_create = ("""
 # STAGING TABLES
 
 staging_events_copy = ("""
-    COPY staging_events FROM {}
-    iam_role {}
-    region 'us-west-2'
+COPY staging_events FROM {}
+CREDENTIALS 'iam_role={}'
+FORMAT AS json {}
+STATUPDATE ON region 'us-west-2'
     """).format(config.get('S3','LOG_DATA'), config.get('IAM_ROLE', 'ARN'), config.get('S3','LOG_JSONPATH'))
 
 staging_songs_copy = ("""
-    COPY staging_songs FROM {}
-    iam_role {}
-    region 'us-west-2'
-    """).format(config.get('S3','LOG_DATA'), config.get('IAM_ROLE', 'ARN'), config.get('S3','LOG_JSONPATH'))
-""").format()
+COPY staging_songs FROM {}
+CREDENTIALS 'iam_role={}'
+FORMAT AS json {}
+STATUPDATE ON region 'us-west-2'
+    """).format(config.get('S3','SONG_DATA'), config.get('IAM_ROLE', 'ARN'), config.get('S3','LOG_JSONPATH'))
 
 # FINAL TABLES
 
@@ -147,7 +147,7 @@ SELECT DISTINCT TIMESTAMP 'epoch' + se.ts/1000 * INTERVAL '1 second'  AS start_t
     se.userAgent   AS user_agent
     FROM staging_events AS se
 INNER JOIN staging_songs AS ss
-ON (se.artist = ss.artist_name)
+ON se.artist = ss.artist_name
 WHERE se.page = 'NextSong';
 """)
 
@@ -158,7 +158,7 @@ SELECT DISTINCT userId AS user_id,
     lastName        AS last_name,
     gender,
     level
-    FROM staging_events AS se
+FROM staging_events AS se
 WHERE page = 'NextSong';
 """)
 
