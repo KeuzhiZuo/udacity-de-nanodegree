@@ -19,7 +19,11 @@ Sparkify has grown their user base and song database and want to move their proc
     - start_time, hour, day, week, month, year, weekday
 
 ## ETL pipeline
-wip
+1. setup the aws redshift, config the data warehouse, cluster, arn and S3 bucket 
+2. load data from S3 to staging tables 
+3. insert data from staging tabels to analytical tables 
+4. test and run the whole process, and validate the data
+5. close the cluster 
 
 ## Note
 Each steps was run and tested in a jupyter notebook, and the results are examples.
