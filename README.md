@@ -17,10 +17,10 @@ This project offers a solution to extract data from S3 and create queries on son
 Please click [HERE](https://github.com/KeuzhiZuo/udacity-de-nanodegree-wip/tree/main/project_3) to view more details about this project.
 
 ## Project 4 - Data Lake
-deadline 1/11/2022
+deadline 1/22/2022
 
 ## Project 5 - Data Pipelines 
-deadline 2/11/2022
+deadline 2/09/2022
 
 ## Project 6 - Capstone
 deadline 3/1/2022
