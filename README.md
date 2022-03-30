@@ -1,5 +1,6 @@
 # Udacity Data Engineer Nanodegree
-This repo contains all the projects from Udacity [Data Engineer Nanodegree](https://www.udacity.com/course/data-engineer-nanodegree--nd027)
+This repo contains all the exercises and projects from Udacity [Data Engineer Nanodegree](https://www.udacity.com/course/data-engineer-nanodegree--nd027). 
+Folders with the lesson names contain all the exercises from that lesson, and folders named as project # are the project related documents. 
 
 ## Project 1 - Data Modeling with Postgres
 A startup called Sparkify wants to analyze the data they've been collecting on songs and user activity on their new music streaming app. 
