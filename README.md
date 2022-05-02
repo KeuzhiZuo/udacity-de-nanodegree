@@ -18,13 +18,16 @@ This project offers a solution to extract data from S3 and create queries on son
 Please click [HERE](https://github.com/KeuzhiZuo/udacity-de-nanodegree-wip/tree/main/project_3) to view more details about this project.
 
 ## Project 4 - Data Lake
-deadline 1/22/2022
+In this project, Sparkify wants to move data warehouse to data lake. Their data resides in S3, in a directory of JSON logs on user activity on the app, as well as a diretory with JSON metadata on the songs in their app. As a data engineer, I am going to build a etl pupeline that extracts their data from S3, process them with Spark, and loads the data back into S3 as a set of dimensional tables. This will allow Sparkify's analytics to explore more about the data.
+Please click [HERE](https://github.com/KeuzhiZuo/udacity-de-nanodegree-wip/tree/main/project_4) to view more details about this project.
 
 ## Project 5 - Data Pipelines 
-deadline 2/09/2022
+In this project, I am using airflow to build four different operators that will stage the data, transform the data, and run checks on data quality.
+By utilizing Airflow's built-in functionalities as connections and hooks as much as possible, I let Airflow do all the heavy-lifting when it is possible.
+Please click [HERE](https://github.com/KeuzhiZuo/udacity-de-nanodegree-wip/tree/main/project_5) to view more details about this project.
 
 ## Project 6 - Capstone
-deadline 3/1/2022
+updating...
 
 ##### Note: 
 More projects will be added to this repo while I make more progress on this course, and more info will be continuously added to this readme file.
