@@ -27,7 +27,5 @@ By utilizing Airflow's built-in functionalities as connections and hooks as much
 Please click [HERE](https://github.com/KeuzhiZuo/udacity-de-nanodegree-wip/tree/main/project_5) to view more details about this project.
 
 ## Project 6 - Capstone
-updating...
-
-##### Note: 
-More projects will be added to this repo while I make more progress on this course, and more info will be continuously added to this readme file.
+In this capstone project, I combine the knowledge from this data engineer course, build etl pipelines that extract, transform and load data from different data sources, clean and organize as a database for data analysis purpose and future usage. Data is provided by Udacity.
+Please click [HERE](https://github.com/KeuzhiZuo/udacity-de-nanodegree-wip/tree/main/project_6_capstone) to view more details about this project.
